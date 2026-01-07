@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
 import { ManagedEntity } from 'src/managed-entities/managed-entities/managed-entity';
@@ -17,6 +17,6 @@ export class User extends ManagedEntity {
   @ManyToOne(() => Role, (role) => role.users, { nullable: false })
   role: Role;
 
-  @OneToOne(() => Book, (book) => book.users)
-  book: Book;
+  @OneToMany(() => Book, (book) => book.users)
+  book: Book[];
 }

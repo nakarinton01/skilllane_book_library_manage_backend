@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { ManagedEntity } from 'src/managed-entities/managed-entities/managed-entity';
 import { User } from 'src/users/users/user.entity';
@@ -17,9 +17,9 @@ export class Book extends ManagedEntity {
   @Column({ type: 'int', width: 4 })
   publication_year: number;
 
-  @Column({ type: 'text', default: null, nullable: true })
+  @Column({ type: 'longtext' })
   image: string;
 
-  @OneToOne(() => User, (user) => user.book)
-  users: User;
+  @ManyToOne(() => User, (user) => user.book, { eager: true, nullable: true })
+  users: User | null;
 }

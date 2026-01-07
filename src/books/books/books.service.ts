@@ -14,7 +14,9 @@ export class BooksService {
   ) {}
 
   async findAll(query: BookQueryDto) {
-    const options: FindManyOptions<Book> = {};
+    const options: FindManyOptions<Book> = {
+      relations: { users: true },
+    };
     if (query.search) {
       options.where = {
         ...options.where,
@@ -45,6 +47,6 @@ export class BooksService {
   }
 
   async return(id: number) {
-    return this.bookRepository.update(id, { users: undefined });
+    return this.bookRepository.update(id, { users: null });
   }
 }

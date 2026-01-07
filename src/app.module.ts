@@ -7,9 +7,13 @@ import { UsersModule } from './users/users.module';
 import { ManagedEntity } from './managed-entities/managed-entities/managed-entity';
 import { AuthModule } from './auth/auth.module';
 import { BooksModule } from './books/books.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         ...dataSourceOptions,
