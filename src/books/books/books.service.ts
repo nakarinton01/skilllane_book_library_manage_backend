@@ -4,7 +4,6 @@ import { FindManyOptions, Like, Repository } from 'typeorm';
 
 import { Book } from './book.entity';
 import { BookQueryDto } from './dto/book-query.dto';
-import { paginate } from 'nestjs-typeorm-paginate';
 import { BookCreateDto } from './dto/book-create.dto';
 
 @Injectable()
@@ -15,9 +14,7 @@ export class BooksService {
   ) {}
 
   async findAll(query: BookQueryDto) {
-    const options: FindManyOptions<Book> = {
-      relations: { users: true },
-    };
+    const options: FindManyOptions<Book> = {};
     if (query.search) {
       options.where = {
         ...options.where,

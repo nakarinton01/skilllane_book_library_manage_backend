@@ -7,17 +7,16 @@ import { Book } from 'src/books/books/book.entity';
 
 @Entity('user')
 export class User extends ManagedEntity {
-
   @Column({ length: 255, unique: true })
   username: string;
 
   @Exclude()
   @Column({ length: 255 })
   password: string;
-  
+
   @ManyToOne(() => Role, (role) => role.users, { nullable: false })
   role: Role;
 
-  @OneToOne(() => Book, (book) => book.users, { nullable: true })
-  book: Book
+  @OneToOne(() => Book, (book) => book.users)
+  book: Book;
 }

@@ -20,6 +20,6 @@ export class Book extends ManagedEntity {
   @Column({ type: 'text', default: null, nullable: true })
   image: string;
 
-  @OneToOne(() => User, (user) => user.book, { nullable: true })
+  @OneToOne(() => User, (user) => user.book)
   users: User;
 }
