@@ -12,8 +12,6 @@ import {
 import { BooksService } from './books.service';
 import { BookQueryDto } from './dto/book-query.dto';
 import { BookCreateDto } from './dto/book-create.dto';
-// import { HasRole } from 'src/users/roles/decorator/has-role.decorator';
-// import { RoleName } from 'src/users/roles/role.entity';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
 import { GetJwtUser } from 'src/auth/jwt/decorator/get-jwt-user.decorator';
 import type { JwtUser } from 'src/auth/jwt/jwt.strategy';
@@ -23,11 +21,13 @@ import { BookUpdateDto } from './dto/book-update.dto';
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Query() query: BookQueryDto) {
     return this.booksService.findAll(query);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   findOne(@Param('id') id: number) {
     return this.booksService.findOne(id);
