@@ -1,0 +1,20 @@
+# Docker relate
+Dockerfile
+.dockerignore
+
+# Repo
+dev-tools
+readme
+.env
+.gitignore
+example.env
+README.md
+
+# yarn
+.yarn
+.yarnrc.yml
+yarn.lock
+
+# App
+dist
+node_modules
